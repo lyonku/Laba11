@@ -25,7 +25,7 @@ def permutation(s):
 if __name__ == '__main__':
     n = int(input())
 
-    arr = [i + 1 for i in range(n)]
+    arr = list(range(1, n + 1))
 
     for line in permutation(arr):
         print(line)

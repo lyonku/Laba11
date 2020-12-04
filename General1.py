@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# Рекурсивная версия
+
+import timeit
 
 
 def factorial(n):
@@ -18,7 +21,8 @@ def fib(n):
 
 
 if __name__ == '__main__':
-    import timeit
+    r_fib = fib(30)
+    r_factorial = factorial(30)
 
-    print(timeit.timeit("factorial(4)", setup="from __main__ import factorial"))
-    print(timeit.timeit("fib(4)", setup="from __main__ import fib"))
+    print(timeit.timeit("r_factorial", setup="from __main__ import r_factorial"))
+    print(timeit.timeit("r_fib", setup="from __main__ import r_fib"))
