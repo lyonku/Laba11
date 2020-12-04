@@ -1,20 +1,29 @@
-import timeit
+# -*- coding: utf-8 -*-
 
-code_to_test = """
 
+from functools import lru_cache
+
+
+@lru_cache(maxsize=24)
 def factorial(n):
-    product = 1
-    while n > 1:
-        product *= n
-        n -= 1
-    return product
+    if n == 0:
+        return 1
+    elif n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
 
+
+@lru_cache(maxsize=24)
 def fib(n):
-    a, b = 0, 1
-    while n > 0:
-        a, b = b, a + b
-        n -= 1
-    return a
-"""
-elapsed_time = timeit.timeit(code_to_test, number=100)/100
-print(f'Время на выполнение кода: {elapsed_time} секунд')
+    if n == 0 or n == 1:
+        return n
+    else:
+        return fib(n - 2) + fib(n - 1)
+
+
+if __name__ == '__main__':
+    import timeit
+
+    print(timeit.timeit("factorial(4)", setup="from __main__ import factorial"))
+    print(timeit.timeit("fib(4)", setup="from __main__ import fib"))
